@@ -32,13 +32,15 @@ const Controls: React.SFC<IControls> = (props) => {
       msec
       {isRunning ? (
         <button 
+          data-testid="stopGame"
           className="button" 
           onClick={stopGame}
         >
           Stop Game
         </button> 
       ) : (
-        <button 
+        <button
+          data-testid="startGame"
           className="button" 
           onClick={startGame}
         >
@@ -46,7 +48,8 @@ const Controls: React.SFC<IControls> = (props) => {
         </button>
         )
       }
-      <button 
+      <button
+        data-testid="randomizeArtboard"
         className="button" 
         onClick={randomizeArtboard}
       >
