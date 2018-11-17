@@ -98,15 +98,6 @@ describe('<Gameboard /> ', () => {
     renderedComponentInstance.calculateNeighbors(stateArray, 1, 3);
   });
 
-  it('should have an interval set by "handleIntervalChange()" method', () => {
-    const controls = shallow(<Controls/>);
-
-    expect(renderedComponentInstance.handleIntervalChange).toBeDefined();
-    controls.find('[data-testid="setInterval"]').simulate('click', { currentTarget: {value: 2000}});
-    renderedComponent.setState({'interval': 2000})
-    expect(renderedComponent.state('interval')).toEqual(2000)
-  });
-
   it('should clear the board with "handleClearGameboard()"', () => {
     const controls = shallow(<Controls/>);
     const onClick = jest.fn(() => controls.find('[data-testid="clearArtboard"]'));

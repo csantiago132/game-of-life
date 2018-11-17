@@ -1,7 +1,3 @@
-.game_board {
-  position: relative;
-  margin: 0 auto;
-  background-color: #000000;
-  background-image:linear-gradient(#333 1px, transparent 1px),
-    linear-gradient(90deg, #333 1px, transparent 1px);
+.gameboard-area {
+  display: flex;
 }
