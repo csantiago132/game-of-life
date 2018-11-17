@@ -25,15 +25,7 @@ To run the automated tests for this app, run `yarn run test` on the terminal.
 
 ### Break down into end to end tests
 
-The test focuses on the behavior of the application, not the implementation of it
-
-```
-Give an example
-```
-
-### And coding style tests
-
-Explain what these tests test and why
+The test focuses on the behavior of the application, not the implementation of it.
 
 ```js
 it('should have a default state defined', () => {
