@@ -21,7 +21,6 @@ describe('<App/> ', () => {
     expect(renderedComponent.state('cell_size')).toBe(20);
     expect(renderedComponent.state('game_height')).toBe(600);
     expect(renderedComponent.state('game_width')).toBe(800);
-    expect(renderedComponent.state('isGameRunning')).toBe(false);
   });
 })
 

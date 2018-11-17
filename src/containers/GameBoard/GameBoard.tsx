@@ -1,6 +1,7 @@
 import * as React from 'react';
 import Cells from '../../components/Cells/Cells';
 import Controls from '../../components/Controls/Controls';
+import MainBoard from '../../components/MainBoard/MainBoard';
 import './GameBoard.css';
 
 interface IGameBoardState {
@@ -15,7 +16,6 @@ interface IGameBoardState {
 interface IGameBoardProps {
   game_height: number;
   game_width: number;
-  isGameRunning: boolean;
   set_cell_size: number;
 }
 
@@ -39,7 +39,7 @@ class GameBoard extends React.Component<IGameBoardProps, IGameBoardState> {
           artboard_width: game_width,
           cells: [],
           cell_size: set_cell_size,
-          interval: 1000,
+          interval: 100,
           isRunning: false,
         }
 
@@ -162,6 +162,7 @@ class GameBoard extends React.Component<IGameBoardProps, IGameBoardState> {
        */
       this.setState({ isRunning: true });
       this.setGameboardIteration();
+      this.handleRandomizeGameboard();
     }
 
     stopGame = () => {
@@ -256,18 +257,6 @@ class GameBoard extends React.Component<IGameBoardProps, IGameBoardState> {
       return neighbors;
     }
 
-    handleIntervalChange = (event: React.FormEvent<HTMLInputElement>) => {
-      /**
-       * handleIntervalChange
-       * 
-       * @param { event }
-       *  
-       * @returns { function }
-       * 
-       */
-      this.setState({ interval: event.currentTarget.value });
-    }
-
     handleClearGameboard = () => {
       /**
        * handle Clear
@@ -311,18 +300,27 @@ class GameBoard extends React.Component<IGameBoardProps, IGameBoardState> {
       } = this.state;
 
       return (
-        <div>
-          <div className="game_board"
+        <article className='gameboard-area'>
+          <Controls
+            startGame={this.runGame}
+            stopGame={this.stopGame}
+            randomizeArtboard={this.handleRandomizeGameboard}
+            clearArtboard={this.handleClearGameboard}
+            isRunning={isRunning}
+          />
+          <MainBoard
             onClick={this.handleClickOnGameboard}
-            ref={(n) => { this.boardRef = n; }}
-            role='button'
+            reference={(n: React.ReactNode) => { this.boardRef = n; }}
             style={{ 
-              backgroundSize: `${cell_size}px ${cell_size}px`,
+              backgroundSize: cell_size,
               height: artboard_height, 
               width: artboard_width, 
             }}
           >
-            {cells.map((cell: { xAxis: number, yAxis: number }) => (
+            {cells.map((cell: { 
+                xAxis: number, 
+                yAxis: number 
+              }) => (
                 <Cells 
                   key={`${cell.xAxis},${cell.yAxis}`} 
                   cell_size={this.state.cell_size} 
@@ -330,17 +328,8 @@ class GameBoard extends React.Component<IGameBoardProps, IGameBoardState> {
                   y={cell.yAxis} 
                 />
             ))}
-          </div>
-          <Controls
-            startGame={this.runGame}
-            stopGame={this.stopGame}
-            randomizeArtboard={this.handleRandomizeGameboard}
-            clearArtboard={this.handleClearGameboard}
-            currentValue={interval}
-            handleInputFieldChange={this.handleIntervalChange}
-            isRunning={isRunning}
-          />
-        </div>
+          </MainBoard>
+        </article>
       );
     }
 }
