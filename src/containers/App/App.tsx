@@ -1,5 +1,7 @@
 import * as React from 'react';
 import GameBoard from '../GameBoard/GameBoard';
+import logoSvg from './assets/logo.svg';
+import './App.css';
 
 interface IAppState {
   cell_size: number;
@@ -25,13 +27,13 @@ class App extends React.Component<{}, IAppState> {
     } = this.state;
 
     return (
-      <main>
+      <section className='game_container' role='main'>
         <GameBoard
           game_height={game_height}
           game_width={game_width}
           set_cell_size={cell_size}
         />
-      </main>
+      </section>
     )
   }
 };
