@@ -31,7 +31,7 @@ describe('<Gameboard /> ', () => {
     expect(renderedComponentInstance.props.set_cell_size).toEqual(20);
   });
 
-  it('should have a makeEmptyBoard() method setting up the board', () => {
+  it('should have a setEmptyBoard() method setting up the board', () => {
     const type = Object();
     //renderedComponent.instance().makeEmptyBoard();
     expect(renderedComponentInstance.board).toMatchObject(type);
@@ -46,16 +46,16 @@ describe('<Gameboard /> ', () => {
     expect(wrapper.instance().getElementOffset()).toEqual(type);
   });
 
-  it('should have a makeCells() method that returns an artboard', () => {
+  it('should have a generateGameBoardCells() method that returns an artboard', () => {
     const type = Object();
-    renderedComponentInstance.makeCells();
+    renderedComponentInstance.generateGameBoardCells();
     expect(renderedComponent).toMatchObject(type);
   });
   
-  it('should call handleClick() when clicked', () => {
+  it('should call handleClickOnGameboard() when clicked', () => {
     const onClick = jest.fn(() => createClickEventObject({ x: 0, y: 0 }));
     
-    expect(renderedComponentInstance.handleClick).toBeDefined();
+    expect(renderedComponentInstance.handleClickOnGameboard).toBeDefined();
     expect(onClick).toHaveBeenCalledTimes(0);
     renderedComponent.simulate('touchStart', onClick());
     expect(onClick).toHaveBeenCalledTimes(1);
@@ -83,10 +83,10 @@ describe('<Gameboard /> ', () => {
     expect(onClick).toHaveBeenCalledTimes(1);
   });
 
-  it('should run an iteration when "runIteration()" is called', () => {
+  it('should run an iteration when "setGameboardIteration()" is called', () => {
     const onClick = jest.fn(() => renderedComponent.instance.runIteration);
     
-    expect(renderedComponentInstance.runIteration).toBeDefined();
+    expect(renderedComponentInstance.setGameboardIteration).toBeDefined();
     renderedComponent.simulate('click', onClick);
     expect(renderedComponent.state('cells')).toEqual(Array());
   });
@@ -107,21 +107,21 @@ describe('<Gameboard /> ', () => {
     expect(renderedComponent.state('interval')).toEqual(2000)
   });
 
-  it('should clear the board with "handleClear()"', () => {
+  it('should clear the board with "handleClearGameboard()"', () => {
     const controls = shallow(<Controls/>);
     const onClick = jest.fn(() => controls.find('[data-testid="clearArtboard"]'));
     
-    expect(renderedComponentInstance.handleClear).toBeDefined();
+    expect(renderedComponentInstance.handleClearGameboard).toBeDefined();
     expect(onClick).toHaveBeenCalledTimes(0); 
     controls.find('[data-testid="clearArtboard"]').simulate('click');  
     expect(renderedComponent.state('cells')).toEqual(Array());
   });
 
-  it('should randomized the gameboard cells with "handleRandom()"', () => {
+  it('should randomized the gameboard cells with "handleRandomizeGameboard()"', () => {
     const controls = shallow(<Controls/>);
     const onClick = jest.fn(() => controls.find('[data-testid="clearArtboard"]'));
 
-    expect(renderedComponentInstance.handleRandom).toBeDefined();
+    expect(renderedComponentInstance.handleRandomizeGameboard).toBeDefined();
     expect(onClick).toHaveBeenCalledTimes(0);
     expect(renderedComponent.state('cells')).toEqual(Array());
   });

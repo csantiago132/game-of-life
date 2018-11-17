@@ -6,7 +6,7 @@ import './GameBoard.css';
 interface IGameBoardState {
   artboard_height: number;
   artboard_width: number;
-  cells: any;
+  cells: Array<any>;
   cell_size: number;
   interval: any;
   isRunning: any;
@@ -52,16 +52,25 @@ class GameBoard extends React.Component<IGameBoardProps, IGameBoardState> {
          * sets the amount of rows based on state settings
          */
         this.rows = this.state.artboard_height / this.state.cell_size;
-        
+
         /**
          * sets the main game board 
          * needs to stay below this.cols & this.rows to read its values
          */
-        this.board = this.makeEmptyBoard();
+        this.board = this.setEmptyBoard();
     }
 
-    makeEmptyBoard(){
-      let board: any = [];
+    setEmptyBoard = () => {
+      /**
+       * setEmptyBoard
+       * 
+       * 2D array this.board is to keep the board state, 
+       * cell list is to keep the position of the cells.
+       * 
+       * @returns { array }
+       * 
+       */
+      let board: Array<any> = [];
       for (let yAxis = 0; yAxis < this.rows; yAxis++) {
           board[yAxis] = [];
           for (let xAxis = 0; xAxis < this.cols; xAxis++) {
@@ -72,8 +81,18 @@ class GameBoard extends React.Component<IGameBoardProps, IGameBoardState> {
       return board;
     }
 
-    getElementOffset() {
-        const rect: any = this.boardRef.getBoundingClientRect();
+    getElementOffset = () =>{
+      /**
+       * getElementOffset
+       * 
+       * will calculate the position of the board element. 
+       * handleClickOnGameboard() will retrieve the click position, 
+       * then convert it to relative position
+       * 
+       * @returns { object }
+       * 
+       */
+        const rect: React.PropsWithRef<any> = this.boardRef.getBoundingClientRect();
         const doc: any = document.documentElement;
 
         return {
@@ -82,7 +101,7 @@ class GameBoard extends React.Component<IGameBoardProps, IGameBoardState> {
         };
     }
 
-    makeCells() {
+    generateGameBoardCells = () => {
       /**
        * makeCells method
        * 
@@ -108,7 +127,7 @@ class GameBoard extends React.Component<IGameBoardProps, IGameBoardState> {
       return cells;
     }
 
-    handleClick = (event: React.MouseEvent<HTMLDivElement>) => {
+    handleClickOnGameboard = (event: React.MouseEvent<HTMLDivElement>) => {
       /** 
        * handleClick method
        * 
@@ -131,7 +150,7 @@ class GameBoard extends React.Component<IGameBoardProps, IGameBoardState> {
         this.board[yAxis][xAxis] = !this.board[yAxis][xAxis];
       }
 
-      this.setState({ cells: this.makeCells() });
+      this.setState({ cells: this.generateGameBoardCells() });
     }
 
     runGame = () => {
@@ -142,7 +161,7 @@ class GameBoard extends React.Component<IGameBoardProps, IGameBoardState> {
        * 
        */
       this.setState({ isRunning: true });
-      this.runIteration();
+      this.setGameboardIteration();
     }
 
     stopGame = () => {
@@ -160,15 +179,32 @@ class GameBoard extends React.Component<IGameBoardProps, IGameBoardState> {
       }
     }
 
-    runIteration() {
+    setGameboardIteration = () => {
       /**
-       * Sets random pattern on the board to get the game ready
+       * setGameboardIteration
+       * 
+       * the board state is updated every iteration set by the interval.
+       * This method updates it
+       * According to Wikipedia, the Game of Life has four rules:
+       * 
+       * 1. Any live cell with fewer than two live neighbors dies, 
+       *    as if caused by under population.
+       * 
+       * 2. Any live cell with two or three live neighbors lives on to 
+       *    the next generation.
+       * 
+       * 3. Any live cell with more than three live neighbors dies, 
+       *    as if by overpopulation.
+       * 
+       * 4. Any dead cell with exactly three live neighbors becomes a live cell, 
+       *    as if by reproduction.
        * 
        * @returns { function } 
        * 
        */
-      let newBoard = this.makeEmptyBoard();
-
+      let newBoard = this.setEmptyBoard();
+      
+      // TODO: look for a way to make this more efficient
       for (let yAxis = 0; yAxis < this.rows; yAxis++) {
         for (let xAxis = 0; xAxis < this.cols; xAxis++) {
           let neighbors = this.calculateNeighbors(this.board, xAxis, yAxis);
@@ -187,10 +223,10 @@ class GameBoard extends React.Component<IGameBoardProps, IGameBoardState> {
         }
 
         this.board = newBoard;
-        this.setState({ cells: this.makeCells() });
+        this.setState({ cells: this.generateGameBoardCells() });
 
         this.timeoutHandler = window.setTimeout(() => {
-            this.runIteration();
+            this.setGameboardIteration();
         }, this.state.interval);
     }
 
@@ -232,18 +268,18 @@ class GameBoard extends React.Component<IGameBoardProps, IGameBoardState> {
       this.setState({ interval: event.currentTarget.value });
     }
 
-    handleClear = () => {
+    handleClearGameboard = () => {
       /**
        * handle Clear
        * 
        * @returns { function }
        * 
        */
-      this.board = this.makeEmptyBoard();
-      this.setState({ cells: this.makeCells() });
+      this.board = this.setEmptyBoard();
+      this.setState({ cells: this.generateGameBoardCells() });
     }
 
-    handleRandom = () => {
+    handleRandomizeGameboard = () => {
       /**
        * handleRandom method
        * 
@@ -261,7 +297,7 @@ class GameBoard extends React.Component<IGameBoardProps, IGameBoardState> {
         }
       }
 
-      this.setState({ cells: this.makeCells() });
+      this.setState({ cells: this.generateGameBoardCells() });
     }
 
     render() {
@@ -277,7 +313,7 @@ class GameBoard extends React.Component<IGameBoardProps, IGameBoardState> {
       return (
         <div>
           <div className="game_board"
-            onClick={this.handleClick}
+            onClick={this.handleClickOnGameboard}
             ref={(n) => { this.boardRef = n; }}
             role='button'
             style={{ 
@@ -298,8 +334,8 @@ class GameBoard extends React.Component<IGameBoardProps, IGameBoardState> {
           <Controls
             startGame={this.runGame}
             stopGame={this.stopGame}
-            randomizeArtboard={this.handleRandom}
-            clearArtboard={this.handleClear}
+            randomizeArtboard={this.handleRandomizeGameboard}
+            clearArtboard={this.handleClearGameboard}
             currentValue={interval}
             handleInputFieldChange={this.handleIntervalChange}
             isRunning={isRunning}
