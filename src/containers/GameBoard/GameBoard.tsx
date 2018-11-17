@@ -13,7 +13,6 @@ interface IGameBoardState {
 }
 
 interface IGameBoardProps {
-  interval: number;
   game_height: number;
   game_width: number;
   isGameRunning: boolean;
@@ -31,7 +30,7 @@ class GameBoard extends React.Component<IGameBoardProps, IGameBoardState> {
     constructor(props: IGameBoardProps) {
         super(props);
         
-        const { game_height, game_width, interval, set_cell_size } = this.props;
+        const { game_height, game_width, set_cell_size } = this.props;
         /**
          * main settings of the game are placed here
          */
@@ -40,7 +39,7 @@ class GameBoard extends React.Component<IGameBoardProps, IGameBoardState> {
           artboard_width: game_width,
           cells: [],
           cell_size: set_cell_size,
-          interval: interval,
+          interval: 1000,
           isRunning: false,
         }
 

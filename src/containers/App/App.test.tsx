@@ -19,7 +19,6 @@ describe('<App/> ', () => {
 
   it('should have a default state defined', () => {
     expect(renderedComponent.state('cell_size')).toBe(20);
-    expect(renderedComponent.state('setInterval')).toBe(100);
     expect(renderedComponent.state('game_height')).toBe(600);
     expect(renderedComponent.state('game_width')).toBe(800);
     expect(renderedComponent.state('isGameRunning')).toBe(false);

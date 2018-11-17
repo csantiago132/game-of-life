@@ -24,7 +24,8 @@ const Controls: React.SFC<IControls> = (props) => {
   return (
     <div className="controls">
       Update every 
-      <input 
+      <input
+        data-testid='setInterval' 
         value={currentValue} 
         onChange={handleInputFieldChange} 
       /> 
@@ -52,6 +53,7 @@ const Controls: React.SFC<IControls> = (props) => {
         Randomize Artboard
       </button>
       <button 
+        data-testid="clearArtboard"
         className="button" 
         onClick={clearArtboard}
       >
