@@ -15,7 +15,6 @@ interface IGameBoardState {
 interface IGameBoardProps {
   game_height: number;
   game_width: number;
-  isGameRunning: boolean;
   set_cell_size: number;
 }
 

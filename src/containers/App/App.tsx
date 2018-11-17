@@ -5,7 +5,6 @@ interface IAppState {
   cell_size: number;
   game_height: number;
   game_width: number;
-  isGameRunning: boolean;
 }
 
 class App extends React.Component<{}, IAppState> {
@@ -15,7 +14,6 @@ class App extends React.Component<{}, IAppState> {
       cell_size: 20,
       game_height: 600,
       game_width: 800,
-      isGameRunning: false,
     };
   }
 
@@ -24,7 +22,6 @@ class App extends React.Component<{}, IAppState> {
       cell_size,
       game_height,
       game_width,
-      isGameRunning,
     } = this.state;
 
     return (
@@ -32,7 +29,6 @@ class App extends React.Component<{}, IAppState> {
         <GameBoard
           game_height={game_height}
           game_width={game_width}
-          isGameRunning={isGameRunning}
           set_cell_size={cell_size}
         />
       </main>
