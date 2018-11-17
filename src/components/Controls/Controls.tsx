@@ -24,20 +24,23 @@ const Controls: React.SFC<IControls> = (props) => {
   return (
     <div className="controls">
       Update every 
-      <input 
+      <input
+        data-testid='setInterval' 
         value={currentValue} 
         onChange={handleInputFieldChange} 
       /> 
       msec
       {isRunning ? (
         <button 
+          data-testid="stopGame"
           className="button" 
           onClick={stopGame}
         >
           Stop Game
         </button> 
       ) : (
-        <button 
+        <button
+          data-testid="startGame"
           className="button" 
           onClick={startGame}
         >
@@ -45,13 +48,15 @@ const Controls: React.SFC<IControls> = (props) => {
         </button>
         )
       }
-      <button 
+      <button
+        data-testid="randomizeArtboard"
         className="button" 
         onClick={randomizeArtboard}
       >
         Randomize Artboard
       </button>
       <button 
+        data-testid="clearArtboard"
         className="button" 
         onClick={clearArtboard}
       >
