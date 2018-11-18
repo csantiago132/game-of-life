@@ -2,7 +2,7 @@
  * App container
  * 
  * Main wrapper of the app, controls main settings of the game
- * 
+ *  
  */
 
 import * as React from 'react';

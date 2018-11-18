@@ -1,6 +1,6 @@
 /**
  * Cells tests
- * 
+ *  
  */
 
 import React from 'react';

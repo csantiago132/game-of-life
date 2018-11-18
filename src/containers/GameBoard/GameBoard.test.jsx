@@ -9,7 +9,7 @@ import { configure, shallow, mount } from 'enzyme';
 import Gameboard from './GameBoard';
 import Controls from '../../components/Controls/Controls';
 import { createClickEventObject } from '../../utils/tests/eventHelpers';
-
+ 
 configure({ adapter: new Adapter() });
 
 const props = {

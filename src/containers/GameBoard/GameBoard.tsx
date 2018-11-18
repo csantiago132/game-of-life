@@ -7,7 +7,7 @@
  * @prop { game_width } number
  * @prop { set_cell_size } number
  * 
- */
+ */ 
 
 import * as React from 'react';
 import Cells from '../../components/Cells/Cells';

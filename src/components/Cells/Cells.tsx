@@ -2,7 +2,7 @@
  * Cells component
  * 
  * the component that makes the cells appear and disappear
- * 
+ *  
  * @prop { cell_size } number 
  * @prop { x } number 
  * @prop { y } number

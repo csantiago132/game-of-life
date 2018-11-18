@@ -1,7 +1,43 @@
 {
   "name": "react-game-of-life",
-  "version": "0.1.0",
-  "private": true,
+  "version": "1.0.0",
+  "description": "This is a simple simulation of Conway's Game of Life built with Typescript with Create-React-App",
+  "main": "./src/index.tsx",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/csantiago132/game-of-life"
+  },
+  "author": "Carlos Santiago",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/csantiago132/game-of-life/issues"
+  },
+  "homepage": "https://www.carlossantiago.io",
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject",
+    "jest:bailtest": "jest --bail --watchAll",
+    "prettier:tsx": "./node_modules/.bin/prettier --config .prettierrc --write *.{test.tsx, tsx, ts, test.tsx}",
+    "prettier:json": "./node_modules/.bin/prettier --config  .prettierrc  --write *.json",
+    "prettier:md": "./node_modules/.bin/prettier --config .prettierrc --print-width 80 --write *.{md, mdx}"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "gitDir": "./",
+    "*.json": ["yarn run prettier:json", "git add"],
+    "*.{md, mdx}": ["yarn run prettier:md", "git add"],
+    "*.{tsx, ts}": ["yarn run prettier:tsx", "git add", "jest --bail --onlyChanged"]
+  },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "browserslist": [">0.2%", "not dead", "not ie <= 11", "not op_mini all"],
   "dependencies": {
     "@types/jest": "23.3.9",
     "@types/node": "10.12.7",
@@ -12,26 +48,14 @@
     "react-scripts": "2.1.1",
     "typescript": "3.1.6"
   },
-  "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
-  },
-  "eslintConfig": {
-    "extends": "react-app"
-  },
-  "browserslist": [
-    ">0.2%",
-    "not dead",
-    "not ie <= 11",
-    "not op_mini all"
-  ],
   "devDependencies": {
     "@types/enzyme": "^3.1.15",
     "@types/enzyme-adapter-react-16": "^1.0.3",
     "enzyme": "^3.7.0",
     "enzyme-adapter-react-16": "^1.7.0",
+    "husky": "^1.1.4",
+    "lint-staged": "^8.0.5",
+    "pre-commit": "^1.2.2",
     "prettier": "^1.15.2",
     "react-test-renderer": "^16.6.3"
   }

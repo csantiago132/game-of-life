@@ -8,7 +8,7 @@
  * @prop { randomizeArtboard } function
  * @prop { startGame } function
  * @prop { stopGame } function
- * 
+ *  
  */
 
 import * as React from 'react';

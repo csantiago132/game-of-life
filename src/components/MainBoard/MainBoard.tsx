@@ -8,7 +8,7 @@
  * @prop { reference } function
  * @prop { style } object
  * 
- */
+ */ 
 
 import * as React from 'react';
 import './MainBoard.css';
