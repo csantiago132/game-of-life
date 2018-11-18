@@ -16,9 +16,9 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test",
+    "test": "react-scripts test --watchAll=false",
     "eject": "react-scripts eject",
-    "jest:bailtest": "jest --bail --watchAll",
+    "jest:bailtest": "jest --ci --bail --forceExit --silent --noStackTrace --reporters jest-dot-reporter",
     "prettier:tsx": "./node_modules/.bin/prettier --config .prettierrc --write *.{test.tsx, tsx, ts, test.tsx}",
     "prettier:json": "./node_modules/.bin/prettier --config  .prettierrc  --write *.json",
     "prettier:md": "./node_modules/.bin/prettier --config .prettierrc --print-width 80 --write *.{md, mdx}"
@@ -32,7 +32,7 @@
     "gitDir": "./",
     "*.json": ["yarn run prettier:json", "git add"],
     "*.{md, mdx}": ["yarn run prettier:md", "git add"],
-    "*.{tsx, ts}": ["yarn run prettier:tsx", "git add", "jest --bail --onlyChanged"]
+    "*.{tsx, ts}": ["yarn run prettier:tsx", "git add"]
   },
   "eslintConfig": {
     "extends": "react-app"
