@@ -20,7 +20,7 @@ const createClientXY = (x: number, y: number) => ({
   clientX: x, clientY: y 
 });
 
-
+ 
 export const createStartTouchEventObject = ({ x = 0, y = 0 }) => ({ 
   /**
    * createStartTouchEventObject

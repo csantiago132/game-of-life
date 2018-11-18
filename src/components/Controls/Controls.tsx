@@ -1,6 +1,20 @@
+/**
+ * Controls component
+ * 
+ * controls of the game
+ * 
+ * @prop { clearArtboard } function
+ * @prop { isRunning }  boolean
+ * @prop { randomizeArtboard } function
+ * @prop { startGame } function
+ * @prop { stopGame } function
+ *  
+ */
+
 import * as React from 'react';
 import './Controls.css';
-import logoSvg from '../../containers/App/assets/logo.svg';
+import logoSvg from './assets/logo.svg';
+
 interface IControls {
   clearArtboard: () => any;
   isRunning: boolean;

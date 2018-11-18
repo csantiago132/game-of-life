@@ -1,6 +1,12 @@
+/**
+ * App container
+ * 
+ * Main wrapper of the app, controls main settings of the game
+ *  
+ */
+
 import * as React from 'react';
 import GameBoard from '../GameBoard/GameBoard';
-import logoSvg from './assets/logo.svg';
 import './App.css';
 
 interface IAppState {

@@ -1,3 +1,8 @@
+/**
+ * Controls tests
+ * 
+ */ 
+
 import React from 'react';
 import Adapter from 'enzyme-adapter-react-16';
 import { configure, shallow, mount } from 'enzyme';
@@ -14,7 +19,6 @@ const props = {
 }
 
 const renderedComponent = shallow(<Controls {...props}/>);
-const renderedComponentInstance = renderedComponent.instance()
 
 describe('<Controls />', () => {
   it('should render without crashing', () => {
