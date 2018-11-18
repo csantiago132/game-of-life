@@ -1,6 +1,11 @@
+/**
+ * Gameboard tests
+ * 
+ */
+
 import React from 'react';
 import Adapter from 'enzyme-adapter-react-16';
-import { configure, shallow, mount, render } from 'enzyme';
+import { configure, shallow, mount } from 'enzyme';
 import Gameboard from './GameBoard';
 import Controls from '../../components/Controls/Controls';
 import { createClickEventObject } from '../../utils/tests/eventHelpers';
@@ -117,8 +122,3 @@ describe('<Gameboard /> ', () => {
     expect(renderedComponent.state('cells')).toEqual(Array());
   });
 });
-
-
-
-
-

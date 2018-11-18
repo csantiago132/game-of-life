@@ -1,3 +1,8 @@
+/**
+ * App tests
+ * 
+ */
+
 import React from 'react';
 import Adapter from 'enzyme-adapter-react-16';
 import { configure, shallow } from 'enzyme';
@@ -23,4 +28,3 @@ describe('<App/> ', () => {
     expect(renderedComponent.state('game_width')).toBe(800);
   });
 })
-

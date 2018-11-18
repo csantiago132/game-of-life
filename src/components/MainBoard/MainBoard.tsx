@@ -1,13 +1,20 @@
 /**
- * MainBoard
+ * MainBoard component
  * 
  * Main game board of the application
  * 
+ * @prop { children } any
+ * @prop { onClick } function
+ * @prop { reference } function
+ * @prop { style } object
+ * 
  */
+
 import * as React from 'react';
 import './MainBoard.css';
 
 interface IMainBoard {
+  children: any;
   onClick: (arg: React.MouseEvent<any>) => void;
   reference: (args: React.ReactNode) => void;
   style: {
@@ -15,7 +22,6 @@ interface IMainBoard {
     height: number;
     width : number; 
   }
-  children: any;
 }
 
 const MainBoard: React.SFC<IMainBoard> = (props) => {

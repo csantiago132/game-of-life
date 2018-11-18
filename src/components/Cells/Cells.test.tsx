@@ -1,4 +1,9 @@
-import React, { Component } from 'react';
+/**
+ * Cells tests
+ * 
+ */
+
+import React from 'react';
 import ReactDOM from 'react-dom';
 import Cells from './Cells';
 
