@@ -294,7 +294,6 @@ class GameBoard extends React.Component<IGameBoardProps, IGameBoardState> {
       artboard_width, 
       cells, 
       cell_size,
-      interval, 
       isRunning, 
     } = this.state;
 
