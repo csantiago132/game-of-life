@@ -3,7 +3,7 @@
 This is a simple simulation of [Conway's Game of Life](https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life) built with Typescript with Create-React-App
 
 ## Getting Started
-
+ 
 To install, run  `yarn run install` on the terminal.
 
 ### Prerequisites

@@ -1,0 +1,47 @@
+{   
+    "tabWidth": 2,
+    "printWidth": 80,
+    "parser": "babylon",
+    "semi": true,
+    "trailingComma": "none",
+    "singleQuote": false,
+    "jsxBracketSameLine": false,
+    "bracketSpacing": true,
+    "arrowParens": "always",
+    "overrides": [
+        {
+            "files": "*.tsx",
+            "options": {
+                "semi": true,
+                "singleQuote": false,
+            }
+        },
+        {
+            "files": "*.js",
+            "options": {
+                "semi": true,
+                "singleQuote": false,
+            }
+        },
+        {
+            "files": "*.test.tsx",
+            "options": {
+                "semi": true
+            }
+        },
+        {
+            "files": "*.md",
+            "options": {
+                "parser": "markdown",
+                "printWidth": 80,
+                "proseWrap": "always",
+            }
+        },
+        {
+            "files": "*.json",
+            "options": {
+                "parser": "json"
+            }
+        }
+    ]
+}
